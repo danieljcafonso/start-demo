@@ -1,8 +1,15 @@
-import { createAsync } from "@solidjs/router";
+import { RouteDefinition, createAsync } from "@solidjs/router";
 import { For } from "solid-js";
+import { getPosts } from "~/lib/posts";
+
+export const route = {
+  load() {
+    getPosts();
+  },
+} satisfies RouteDefinition;
 
 export default function Posts() {
-  const posts = createAsync(async () => (await fetch("/api/posts")).json());
+  const posts = createAsync(() => getPosts());
   return (
     <>
       <ul>

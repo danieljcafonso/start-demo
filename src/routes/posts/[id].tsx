@@ -1,10 +1,19 @@
-import { RouteSectionProps, createAsync } from "@solidjs/router";
+import {
+  RouteDefinition,
+  RouteSectionProps,
+  createAsync,
+} from "@solidjs/router";
 import { Show } from "solid-js";
+import { getPost } from "~/lib/posts";
+
+export const route = {
+  load({ params }) {
+    getPost(+params.id);
+  },
+} satisfies RouteDefinition;
 
 export default function ViewPost(props: RouteSectionProps) {
-  const post = createAsync(async () =>
-    (await fetch(`/api/posts/${props.params.id}`)).json()
-  );
+  const post = createAsync(() => getPost(+props.params.id));
 
   return (
     <Show when={post()}>
