@@ -1,31 +1,36 @@
 import { RouteDefinition, createAsync } from "@solidjs/router";
-import { For } from "solid-js";
-import { getPosts } from "~/lib/posts";
+import { For, createEffect } from "solid-js";
+import { getCars } from "~/lib/cars";
 
 export const route = {
   load() {
-    getPosts();
+    getCars();
   },
 } satisfies RouteDefinition;
 
-export default function Posts() {
-  const posts = createAsync(() => getPosts());
+export default function Cars() {
+  const cars = createAsync(() => getCars());
+
+  createEffect(() => console.log(cars()));
   return (
     <>
       <ul>
-        <For each={posts()}>
-          {(post) => (
+        <For each={cars()}>
+          {(car) => (
             <li>
-              <a href={`/posts/${post.id}`}>
-                <h3>{post.title}</h3>
-                <small>{new Date(post.timestamp).toLocaleDateString()}</small>
-                <p>{post.caption}</p>
+              <a href={`/cars/${car.id}`}>
+                <h3>{`${car.brand} ${car.model}`}</h3>
+                <small>
+                  Added {new Date(car.timestamp).toLocaleDateString()}
+                </small>
+                <p>{car.price} €</p>
+                <p>{car.description}</p>
               </a>
             </li>
           )}
         </For>
       </ul>
-      <a href="/new">Add new post...</a>
+      <a href="/new">Add new car...</a>
     </>
   );
 }

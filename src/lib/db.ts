@@ -1,6 +1,15 @@
 import { createStorage } from "unstorage";
 import fsLiteDriver from "unstorage/drivers/fs-lite";
 
+export type Car = {
+  id: number;
+  brand: string;
+  model: string;
+  description: string;
+  price: number;
+  timestamp: number;
+};
+
 export const storage = createStorage({
   driver: fsLiteDriver({
     base: "./data",
@@ -8,20 +17,22 @@ export const storage = createStorage({
 });
 
 //init
-storage.setItem("posts:data", [
+storage.setItem("cars:data", [
   {
     id: 1,
-    title: "First Blog Post",
-    caption: "This is where it all starts",
-    content: "",
+    brand: "Audi",
+    model: "Guinea",
+    description: "My car is cool, please buy it!",
+    price: 30000,
     timestamp: Date.now(),
   },
   {
     id: 2,
-    title: "Second Blog Post",
-    caption: "This is where it all continues",
-    content: "",
+    brand: "Ferrari",
+    model: "Hedgehog",
+    description: "Gotta go fast. Brrm brrm let's go",
+    price: 100000,
     timestamp: Date.now(),
   },
 ]);
-storage.setItem("posts:counter", 3);
+storage.setItem("cars:counter", 2);
