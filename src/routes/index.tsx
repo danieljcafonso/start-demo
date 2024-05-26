@@ -11,7 +11,6 @@ export const route = {
 export default function Cars() {
   const cars = createAsync(() => getCars());
 
-  createEffect(() => console.log(cars()));
   return (
     <>
       <ul>

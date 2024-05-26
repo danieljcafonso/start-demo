@@ -23,16 +23,16 @@ export const addCar = action(async (data: FormData) => {
     price: Number(data.get("price")),
   };
 
-  let [{ value: posts }, { value: index }] = await storage.getItems([
+  let [{ value: cars }, { value: index }] = await storage.getItems([
     "cars:data",
     "cars:counter",
   ]);
 
-  let post;
+  let car;
   await Promise.all([
     storage.setItem("cars:data", [
-      ...(posts as Car[]),
-      (post = { ...carInput, id: index as number, timestamp: Date.now() }),
+      ...(cars as Car[]),
+      (car = { ...carInput, id: index as number, timestamp: Date.now() }),
     ]),
     storage.setItem("cars:counter", (index as number) + 1),
   ]);
