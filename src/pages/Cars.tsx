@@ -1,8 +1,9 @@
 import { createAsync } from "@solidjs/router";
 import { For } from "solid-js";
+import { getCars } from "~/lib/cars";
 
 export default function Cars() {
-  const cars = createAsync(async () => (await fetch("/api/cars")).json());
+  const cars = createAsync(() => getCars());
 
   return (
     <>

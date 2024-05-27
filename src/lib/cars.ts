@@ -1,3 +1,4 @@
+"use server";
 import { storage, Car } from "./db";
 
 export const getCars = async () => {

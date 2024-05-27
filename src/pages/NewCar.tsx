@@ -1,4 +1,5 @@
 import { useNavigate } from "@solidjs/router";
+import { addCar } from "~/lib/cars";
 
 export default function NewCar() {
   const navigate = useNavigate();
@@ -8,14 +9,11 @@ export default function NewCar() {
         onSubmit={(e) => {
           e.preventDefault();
           const form: any = e.target;
-          fetch("/api/cars", {
-            method: "POST",
-            body: JSON.stringify({
-              brand: form.brand.value,
-              model: form.model.value,
-              description: form.description.value,
-              price: form.price.value,
-            }),
+          addCar({
+            brand: form.brand.value,
+            model: form.model.value,
+            description: form.description.value,
+            price: form.price.value,
           }).then(() => navigate("/"));
         }}
       >
