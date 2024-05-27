@@ -19,7 +19,7 @@ export const storage = createStorage({
 //init
 storage.setItem("cars:data", [
   {
-    id: 1,
+    id: 0,
     brand: "Audi",
     model: "Guinea",
     description: "My car is cool, please buy it!",
@@ -27,7 +27,7 @@ storage.setItem("cars:data", [
     timestamp: Date.now(),
   },
   {
-    id: 2,
+    id: 1,
     brand: "Ferrari",
     model: "Hedgehog",
     description: "Gotta go fast. Brrm brrm let's go",

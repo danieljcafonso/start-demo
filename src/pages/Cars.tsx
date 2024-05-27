@@ -1,16 +1,25 @@
-import { RouteDefinition, createAsync } from "@solidjs/router";
-import { For, createEffect } from "solid-js";
-import { getCars } from "~/lib/cars";
+import { For } from "solid-js";
 
-export const route = {
-  load() {
-    getCars();
+const cars = () => [
+  {
+    id: 1,
+    brand: "Audi",
+    model: "Guinea",
+    description: "My car is cool, please buy it!",
+    price: 30000,
+    timestamp: Date.now(),
   },
-} satisfies RouteDefinition;
+  {
+    id: 2,
+    brand: "Ferrari",
+    model: "Hedgehog",
+    description: "Gotta go fast. Brrm brrm let's go",
+    price: 100000,
+    timestamp: Date.now(),
+  },
+];
 
 export default function Cars() {
-  const cars = createAsync(() => getCars());
-
   return (
     <>
       <ul>

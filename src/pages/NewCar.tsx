@@ -1,10 +1,7 @@
-import { A } from "@solidjs/router";
-import { addCar } from "~/lib/cars";
-
 export default function NewCar() {
   return (
     <>
-      <form action={addCar} method="post">
+      <form>
         <input type="text" required name="brand" placeholder="Brand" />
         <input type="text" required name="model" placeholder="Model" />
         <input
@@ -24,7 +21,7 @@ export default function NewCar() {
         />
         <button type="submit">Create Car</button>
       </form>
-      <A href="/"> Go back </A>
+      <a href="/"> Go back </a>
     </>
   );
 }

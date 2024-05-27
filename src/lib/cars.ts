@@ -1,27 +1,23 @@
-import { action, cache, redirect } from "@solidjs/router";
 import { storage, Car } from "./db";
 
-export const getCars = cache(async () => {
-  "use server";
+export const getCars = async () => {
   return ((await storage.getItem("cars:data")) as Car[]).reverse();
-}, "cars");
+};
 
-export const getCar = cache(async (id: number) => {
-  "use server";
+export const getCar = async (id: number) => {
   return ((await storage.getItem("cars:data")) as Car[]).find(
     (car) => car.id === id
   );
-}, "car");
+};
 
-export const addCar = action(async (data: FormData) => {
-  "use server";
-
-  const carInput = {
-    brand: String(data.get("brand")),
-    model: String(data.get("model")),
-    description: String(data.get("description")),
-    price: Number(data.get("price")),
-  };
+type CarInput = Pick<Car, "brand" | "model" | "description" | "price">;
+export const addCar = async (carInput: CarInput) => {
+  // const carInput = {
+  //   brand: String(data.get("brand")),
+  //   model: String(data.get("model")),
+  //   description: String(data.get("description")),
+  //   price: Number(data.get("price")),
+  // };
 
   let [{ value: cars }, { value: index }] = await storage.getItems([
     "cars:data",
@@ -36,5 +32,5 @@ export const addCar = action(async (data: FormData) => {
     ]),
     storage.setItem("cars:counter", (index as number) + 1),
   ]);
-  return redirect("/");
-});
+  return car;
+};
