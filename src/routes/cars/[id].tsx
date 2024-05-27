@@ -1,6 +1,16 @@
-import { RouteSectionProps, createAsync } from "@solidjs/router";
+import {
+  RouteDefinition,
+  RouteSectionProps,
+  createAsync,
+} from "@solidjs/router";
 import { Show } from "solid-js";
 import { getCar } from "~/lib/cars";
+
+export const route = {
+  load({ params }) {
+    getCar(+params.id);
+  },
+} satisfies RouteDefinition;
 
 export default function ViewCar(props: RouteSectionProps) {
   const car = createAsync(() => getCar(+props.params.id));

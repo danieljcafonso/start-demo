@@ -1,6 +1,12 @@
-import { createAsync } from "@solidjs/router";
+import { RouteDefinition, createAsync } from "@solidjs/router";
 import { For } from "solid-js";
 import { getCars } from "~/lib/cars";
+
+export const route = {
+  load() {
+    getCars();
+  },
+} satisfies RouteDefinition;
 
 export default function Cars() {
   const cars = createAsync(() => getCars());
