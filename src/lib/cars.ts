@@ -1,4 +1,4 @@
-import { action, cache } from "@solidjs/router";
+import { action, cache, redirect } from "@solidjs/router";
 import { storage, Car } from "./db";
 
 export const getCars = cache(async () => {
@@ -35,5 +35,5 @@ export const addCar = action(async (data: FormData) => {
     ]),
     storage.setItem("cars:counter", (index as number) + 1),
   ]);
-  return car;
+  return redirect("/");
 });

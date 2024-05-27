@@ -1,22 +1,9 @@
-import { useNavigate } from "@solidjs/router";
 import { addCar } from "~/lib/cars";
 
 export default function NewCar() {
-  const navigate = useNavigate();
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const form: any = e.target;
-          addCar({
-            brand: form.brand.value,
-            model: form.model.value,
-            description: form.description.value,
-            price: form.price.value,
-          }).then(() => navigate("/"));
-        }}
-      >
+      <form method="post" action={addCar}>
         <input type="text" required name="brand" placeholder="Brand" />
         <input type="text" required name="model" placeholder="Model" />
         <input
