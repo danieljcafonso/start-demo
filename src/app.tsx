@@ -1,10 +1,11 @@
-import { Suspense } from "solid-js";
+import { Suspense, lazy } from "solid-js";
 import "./app.css";
 import { Route, Router } from "@solidjs/router";
+import { getCar, getCars } from "./lib/cars";
 
-import Cars from "./pages/Cars";
-import ViewCar from "./pages/ViewCar";
-import NewCar from "./pages/NewCar";
+const Cars = lazy(() => import("./pages/Cars"));
+const ViewCar = lazy(() => import("./pages/ViewCar"));
+const NewCar = lazy(() => import("./pages/NewCar"));
 
 export default function App() {
   return (
@@ -16,8 +17,12 @@ export default function App() {
         </main>
       )}
     >
-      <Route path="/" component={Cars} />
-      <Route path="cars/:id" component={ViewCar} />
+      <Route path="/" component={Cars} load={() => getCars()} />
+      <Route
+        path="cars/:id"
+        component={ViewCar}
+        load={(props) => getCar(+props.params.id)}
+      />
       <Route path="/new" component={NewCar} />
     </Router>
   );
