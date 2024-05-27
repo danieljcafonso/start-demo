@@ -1,7 +1,24 @@
+import { useNavigate } from "@solidjs/router";
+
 export default function NewCar() {
+  const navigate = useNavigate();
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const form: any = e.target;
+          fetch("/api/cars", {
+            method: "POST",
+            body: JSON.stringify({
+              brand: form.brand.value,
+              model: form.model.value,
+              description: form.description.value,
+              price: form.price.value,
+            }),
+          }).then(() => navigate("/"));
+        }}
+      >
         <input type="text" required name="brand" placeholder="Brand" />
         <input type="text" required name="model" placeholder="Model" />
         <input

@@ -1,15 +1,11 @@
+import { RouteSectionProps, createAsync } from "@solidjs/router";
 import { Show } from "solid-js";
 
-const car = () => ({
-  id: 1,
-  brand: "Audi",
-  model: "Guinea",
-  description: "My car is cool, please buy it!",
-  price: 30000,
-  timestamp: Date.now(),
-});
+export default function ViewCar(props: RouteSectionProps) {
+  const car = createAsync(async () =>
+    (await fetch(`/api/cars/${props.params.id}`)).json()
+  );
 
-export default function ViewCar() {
   return (
     <Show when={car()}>
       {(car) => (
