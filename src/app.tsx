@@ -8,7 +8,7 @@ export default function App() {
     <Router
       root={(props) => (
         <main>
-          <img src="/autovit_logo.svg" width={336} height={80}></img>
+          <img src="/standvirtual.svg" width={336} height={80}></img>
           <Suspense fallback="Loading...">{props.children}</Suspense>
         </main>
       )}
