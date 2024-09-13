@@ -7,7 +7,7 @@ import { Show } from "solid-js";
 import { getCar } from "~/lib/cars";
 
 export const route = {
-  load({ params }) {
+  preload({ params }) {
     getCar(+params.id);
   },
 } satisfies RouteDefinition;

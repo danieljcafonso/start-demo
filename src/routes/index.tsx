@@ -3,7 +3,7 @@ import { For } from "solid-js";
 import { getCars } from "~/lib/cars";
 
 export const route = {
-  load() {
+  preload() {
     getCars();
   },
 } satisfies RouteDefinition;
