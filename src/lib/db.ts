@@ -1,13 +1,12 @@
 import { createStorage } from "unstorage";
 import fsLiteDriver from "unstorage/drivers/fs-lite";
 
-export type Car = {
+export type OnCallUser = {
   id: number;
-  brand: string;
-  model: string;
-  description: string;
-  price: number;
-  timestamp: number;
+  service: string;
+  user: string;
+  timeStart: Date;
+  timeEnd: Date;
 };
 
 export const storage = createStorage({
@@ -17,22 +16,20 @@ export const storage = createStorage({
 });
 
 //init
-storage.setItem("cars:data", [
+storage.setItem("oncall:data", [
   {
     id: 0,
-    brand: "Audi",
-    model: "Guinea",
-    description: "My car is cool, please buy it!",
-    price: 30000,
-    timestamp: Date.now(),
+    service: "Messaging Queue",
+    user: "Daniel Afonso",
+    timeStart: new Date().setHours(0, 0, 0, 0),
+    timeEnd: new Date().setHours(23, 59, 59, 999),
   },
   {
     id: 1,
-    brand: "Ferrari",
-    model: "Hedgehog",
-    description: "Gotta go fast. Brrm brrm let's go",
-    price: 100000,
-    timestamp: Date.now(),
+    service: "Auth Service",
+    user: "Afonso Daniel",
+    timeStart: new Date().setHours(0, 0, 0, 0),
+    timeEnd: new Date().setHours(23, 59, 59, 999),
   },
 ]);
-storage.setItem("cars:counter", 2);
+storage.setItem("oncall:counter", 2);

@@ -1,27 +1,24 @@
-import { addCar } from "~/lib/cars";
+import { addOnCall } from "~/lib/oncall";
 
-export default function NewCar() {
+export default function NewOnCall() {
   return (
     <>
-      <form method="post" action={addCar}>
-        <input type="text" required name="brand" placeholder="Brand" />
-        <input type="text" required name="model" placeholder="Model" />
+      <form method="post" action={addOnCall}>
+        <input type="text" required name="service" placeholder="Service" />
+        <input type="text" required name="user" placeholder="User" />
         <input
-          type="number"
+          type="datetime-local"
           required
-          min={1}
-          name="price"
-          placeholder="Price"
+          name="timeStart"
+          placeholder="Start Time"
         />
-        <textarea
+        <input
+          type="datetime-local"
           required
-          minLength={30}
-          name="description"
-          placeholder="Add your car information here..."
-          rows="8"
-          cols="40"
+          name="timeEnd"
+          placeholder="End Time"
         />
-        <button type="submit">Create Car</button>
+        <button type="submit">Add On Call Rotation</button>
       </form>
       <a href="/"> Go back </a>
     </>
